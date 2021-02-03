@@ -1,0 +1,32 @@
+1612345561463	Copy compilation units
+1612345565686	Delete element
+1612345576822	Copy compilation units
+1612345590714	Delete elements
+1612345675413	Rename package 'controller'
+1612345742737	Rename type 'ProduitServlet'
+1612346642601	Rename resource 'stockCreate.jsp'
+1612346652593	Rename resource 'stockListe.jsp'
+1612346659322	Rename resource 'produitCreate.jsp'
+1612346667886	Rename resource 'produitListe.jsp'
+1612346684337	Copy file
+1612346764188	Rename type 'ProduitDao'
+1612346776124	Rename type 'ProduitDaoImpl'
+1612346791591	Rename type 'Produit'
+1612346803655	Rename type 'ProduitService'
+1612346815742	Rename type 'ProduitServiceImpl'
+1612346887892	Rename method 'createproduit'
+1612346907850	Rename method 'getproduits'
+1612347792039	Rename field 'service'
+1612348069761	Copy compilation unit
+1612348131323	Copy compilation units
+1612349509274	Copy compilation unit
+1612349751502	Copy file
+1612351322398	Rename resource 'articleList.jsp'
+1612375037276	Copy compilation unit
+1612375062776	Delete element
+1612375071304	Copy compilation unit
+1612376788464	Delete element
+1612376790300	Delete element
+1612376822462	Delete elements
+1612379841887	Delete element
+1612383643797	Rename field 'address'

@@ -1,0 +1,39 @@
+package controller;
+
+
+import java.io.IOException;
+
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import fr.epsi.entite.Produit;
+import fr.epsi.service.ProduitService;
+
+@WebServlet("/produit")
+public class ProduitServlet extends HttpServlet{
+	
+	@EJB
+	private ProduitService service;
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+	        throws ServletException, IOException
+	    {
+		   this.getServletContext().getRequestDispatcher("/WEB-INF/pages/ProduitForm.jsp").forward(req, resp);
+	    }
+
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+	        throws ServletException, IOException
+	    {
+		   Produit p=new Produit();
+		   p.setCodeBarre(req.getParameter("cbProduit"));
+		   p.setNom(req.getParameter("nomProduit"));
+		   
+		   
+		   service.createproduit(p);
+	    }
+
+}

@@ -1,0 +1,42 @@
+package fr.epsi.controller;
+
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import fr.epsi.entite.Client;
+import fr.epsi.service.InitialisationService;
+
+@WebServlet("/home")
+public class HomeServlet extends HttpServlet{
+
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+	        throws ServletException, IOException
+	    {
+			Initialize();
+		   	this.getServletContext().getRequestDispatcher("/WEB-INF/webpages/home.jsp").forward(req, resp);
+	    }
+	
+	// SECTION Initialisation
+	@EJB
+	private InitialisationService is;
+	
+	// Fonction d'initialisation
+	// Sert à créer les premiers éléments de la base
+	// Faire abstraction de cette partie
+	void Initialize() {
+		// Vérifier si la base n'a pas déjà été initialisée
+		if(!is.checkIfInitialized()) {
+			is.generateData();
+		}
+	}
+
+}

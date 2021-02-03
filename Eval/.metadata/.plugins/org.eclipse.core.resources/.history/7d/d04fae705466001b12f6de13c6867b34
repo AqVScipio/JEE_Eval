@@ -1,0 +1,21 @@
+package fr.epsi.data;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.ejb.EJB;
+
+import fr.epsi.entite.Article;
+import fr.epsi.entite.Client;
+import fr.epsi.entite.Facture;
+import fr.epsi.entite.LigneFacture;
+import fr.epsi.service.InitialisationService;
+
+// SECTION Initialisation
+public class InitData {
+	
+	
+
+
+}

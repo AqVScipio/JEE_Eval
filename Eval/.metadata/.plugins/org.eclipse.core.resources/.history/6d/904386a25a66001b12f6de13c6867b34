@@ -1,0 +1,48 @@
+<%@page import="fr.epsi.entite.Facture"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Facture n° </title>
+	<%@include file="commons/header.jsp" %>
+</head>
+<body>
+<div class="container">
+	<%@include file="commons/menu.jsp" %>
+  
+  	
+  	<h1>Facture n° <% 
+		Facture f = (Facture) request.getAttribute("facture");
+  		if(f != null) out.println(f.getNumero());
+  	%></h1>
+  	
+  	<div style="float:left;">
+  		<p>Date de Facturation : <% if(f != null) out.print(f.getDate()); %></p>
+  		<p>Numéro de Facture : <% if(f != null) out.print(f.getNumero()); %></p>
+  	</div>
+  	<div style="float:right;">
+  		<p><% if(f != null) out.print(f.getClient().getNom()); %></p>
+  		<p><% if(f != null) out.print(f.getClient().getAddress()); %></p>  		
+  	</div>
+  	<table>
+        <tr style="font-weight:bold;">
+            <th scope="col">N°</th>
+            <th scope="col">Date</th>
+            <th scope="col">Client</th>
+            <th scope="col">Prix</th>
+        </tr>
+ 			<c:forEach items="${factures}" var="item">
+		<tr>
+			<td><c:out value="${item.numero}"/></td>
+			<td><c:out value="${item.date}"/></td>
+			<td><c:out value="${item.client.nom}"/></td>
+			<td><c:out value="${item.prix}"/></td>
+			<td><a href="factures?action=${item.numero}">Détail</a></td>
+		<tr>
+		</c:forEach>
+	</table>
+</div>
+</body>
+</html>

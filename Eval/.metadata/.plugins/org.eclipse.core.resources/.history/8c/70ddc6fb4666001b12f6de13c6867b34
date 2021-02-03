@@ -1,0 +1,72 @@
+package fr.epsi.service;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
+
+import fr.epsi.entite.Article;
+import fr.epsi.entite.Client;
+import fr.epsi.entite.Facture;
+import fr.epsi.entite.LigneFacture;
+
+@Stateless
+@TransactionManagement(TransactionManagementType.BEAN)
+public class InitialisationService {
+	@PersistenceContext
+	private EntityManager em;
+	
+	@EJB
+	private ClientService cs;
+	@EJB
+	private ArticleService as;	
+	
+	public boolean checkIfInitialized() {
+		return em.find(Client.class, 1) != null;
+	}
+	
+	public void generateData() {
+		List<Article> articles = new ArrayList<Article>();
+		articles.add(new Article("Spoon", 3));
+		articles.add(new Article("Fork", 2));
+		articles.add(new Article("Knife", 5));
+		articles.add(new Article("Bowl", 8));
+		articles.add(new Article("Plate", 7));
+		
+		for (Article a : articles) {
+			as.createArticle(a);
+		}
+		
+		List<LigneFacture> lf1 = new ArrayList<LigneFacture>();
+		lf1.add(new LigneFacture(articles.get(0), 2))
+		List<LigneFacture> lf2 = new ArrayList<LigneFacture>();
+		List<LigneFacture> lf3 = new ArrayList<LigneFacture>();
+		List<LigneFacture> lf4 = new ArrayList<LigneFacture>();
+		List<LigneFacture> lf5 = new ArrayList<LigneFacture>();
+		List<LigneFacture> lf6 = new ArrayList<LigneFacture>();
+		
+		List<Facture> f1 = new ArrayList<Facture>();
+		f1.add(new Facture("FC-005", new Date(), lf1));
+		f1.add(new Facture("FC-083", new Date(), lf2));
+
+		List<Facture> f2 = new ArrayList<Facture>();
+		f2.add(new Facture("FC-142", new Date(), lf3));
+		
+		List<Facture> f3 = new ArrayList<Facture>();
+		f2.add(new Facture("FC-99", new Date(), lf4));
+		f2.add(new Facture("FC-117", new Date(), lf5));
+		f2.add(new Facture("FC-118", new Date(), lf6));
+
+		
+		List<Client> clients = new ArrayList<Client>();
+		clients.add(new Client("Richard DOS SANTOS", "33520 Bruges",f1));
+	}
+}

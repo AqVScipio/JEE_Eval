@@ -1,0 +1,11 @@
+package fr.epsi.service;
+
+import java.awt.List;
+
+import fr.epsi.entite.Article;
+
+public interface ArticleService {
+	
+	void createArticle(Article p);
+	Article[] getArticles();
+}

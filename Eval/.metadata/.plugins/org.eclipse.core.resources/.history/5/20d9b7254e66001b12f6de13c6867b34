@@ -1,0 +1,56 @@
+package fr.epsi.service;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import fr.epsi.dao.ClientDao;
+import fr.epsi.dao.ClientDaoImpl;
+import fr.epsi.entite.Article;
+import fr.epsi.entite.Client;
+import fr.epsi.entite.Facture;
+import fr.epsi.entite.LigneFacture;
+
+@Stateless
+@TransactionManagement(TransactionManagementType.BEAN)
+public class InitialisationService {
+	@PersistenceContext
+	private EntityManager em;
+	
+	@EJB
+	private ClientService cs;
+	@EJB
+	private ArticleService as;	
+	
+	public boolean checkIfInitialized() {
+		return em.find(Client.class, 1l) != null;
+	}
+	
+	public void generateData() {
+		List<Article> articles = new ArrayList<Article>();
+		articles.add(new Article("Spoon", 3));
+		articles.add(new Article("Fork", 2));
+		articles.add(new Article("Knife", 5));
+		articles.add(new Article("Bowl", 8));
+		articles.add(new Article("Plate", 7));
+		
+		List<Client> clients = new ArrayList<Client>();
+		clients.add(new Client("Mickey MOUSE", "Avenue de la Paix"));
+		clients.add(new Client("Donald DUCK", "Gare de Lyon"));
+		clients.add(new Client("Dingo", "84520 Winterfell"));
+
+		for (Article a : articles) {
+			as.createArticle(a);
+		}
+		for (Client c : clients) {
+			cs.createClient(c);
+		}
+	}
+}

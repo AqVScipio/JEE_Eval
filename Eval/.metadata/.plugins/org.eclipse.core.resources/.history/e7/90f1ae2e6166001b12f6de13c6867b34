@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Articles</title>
+	<%@include file="commons/header.jsp" %>
+</head>
+<body>
+<div class="container">
+	<%@include file="commons/menu.jsp" %>
+  
+  	<h1>Liste des articles</h1>
+  	
+  	<a href="articles?action=create">Ajouter un article</a>
+</div>
+</body>
+</html>

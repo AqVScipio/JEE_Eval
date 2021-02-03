@@ -1,0 +1,52 @@
+package fr.epsi.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
+
+import fr.epsi.entite.Article;
+import fr.epsi.entite.Client;
+
+@Stateless
+@TransactionManagement(TransactionManagementType.BEAN)
+public class InitialisationService {
+	@PersistenceContext
+	private EntityManager em;
+	
+	public boolean checkIfInitialized() {
+		return em.find(Client.class, 1) != null;
+	}
+	
+	public void generateData() {
+		this.createArticles();
+		this.createClients();
+	}
+	
+	@EJB
+	private ClientService cs;
+	@EJB
+	private ArticleService as;
+
+	void createClients() {
+		List<Client> clients = new ArrayList<Client>();
+		Client c = new Client();
+		c.setNom("DOS SANTOS Richard");
+		c.setAddress("33520 Bruges");
+		
+	}
+
+	void createArticles() {
+		List<Article> articles = new ArrayList<Article>();
+		Article a = new Article();
+		a.setNom("Cuillère en bois");
+		a.setNom("Cuillère en bois");
+	}
+}

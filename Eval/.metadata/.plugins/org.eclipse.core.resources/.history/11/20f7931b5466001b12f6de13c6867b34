@@ -1,0 +1,36 @@
+package fr.epsi.controller;
+
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import fr.epsi.data.InitData;
+import fr.epsi.entite.Article;
+import fr.epsi.entite.Client;
+import fr.epsi.entite.Facture;
+import fr.epsi.entite.LigneFacture;
+import fr.epsi.service.InitialisationService;
+
+@WebServlet("/home")
+public class HomeServlet extends HttpServlet{
+	
+	InitData id;
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+	        throws ServletException, IOException
+	    {
+			id.Initialize();
+		   	this.getServletContext().getRequestDispatcher("/WEB-INF/webpages/home.jsp").forward(req, resp);
+	    }
+	
+
+}

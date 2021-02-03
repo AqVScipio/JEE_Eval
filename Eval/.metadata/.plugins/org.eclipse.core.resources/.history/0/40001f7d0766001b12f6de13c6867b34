@@ -1,0 +1,7 @@
+package fr.epsi.dao;
+
+import fr.epsi.entite.Produit;
+
+public interface ArticleDao {
+    void create(Produit p);
+}
